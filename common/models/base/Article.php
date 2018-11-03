@@ -4,8 +4,8 @@
 
 namespace common\models\base;
 
+use mohorev\file\UploadBehavior;
 use Yii;
-
 /**
  * This is the base-model class for table "article".
  *
@@ -14,6 +14,9 @@ use Yii;
  * @property string $body
  * @property string $status
  * @property string $image
+ * @property integer $category_article_id
+ *
+ * @property \common\models\CategoryArticle $categoryArticle
  * @property string $aliasModel
  */
 abstract class Article extends \yii\db\ActiveRecord
@@ -36,11 +39,26 @@ abstract class Article extends \yii\db\ActiveRecord
     {
         return [
             [['body'], 'string'],
-            [['title', 'image'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 12]
+            [['category_article_id'], 'integer'],
+            [['title'], 'string', 'max' => 255],
+            [['status'], 'string', 'max' => 12],
+            [['category_article_id'], 'exist', 'skipOnError' => true, 'targetClass' => \common\models\CategoryArticle::className(), 'targetAttribute' => ['category_article_id' => 'id']],
+            ['image', 'file', 'extensions' => 'jpg, png', 'on' => ['insert', 'update']],
         ];
     }
 
+    function behaviors()
+    {
+        return [
+            [
+                'class' => UploadBehavior::class,
+                'attribute' => 'file',
+                'scenarios' => ['insert', 'update'],
+                'path' => '@webroot/uploads/{article.title}',
+                'url' => '@web/uploads/{article.title}',
+            ],
+        ];
+    }
     /**
      * @inheritdoc
      */
@@ -52,7 +70,16 @@ abstract class Article extends \yii\db\ActiveRecord
             'body' => 'Body',
             'status' => 'Status',
             'image' => 'Image',
+            'category_article_id' => 'Category Article ID',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategoryArticle()
+    {
+        return $this->hasOne(\common\models\CategoryArticle::className(), ['id' => 'category_article_id']);
     }
 
 

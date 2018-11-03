@@ -8,7 +8,7 @@
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?= Yii::$app->user->identity->username?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -29,19 +29,42 @@
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
+                
                 'items' => [
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
-                    ['label' => 'Articles', 'icon' => 'th-list', 'url' => ['/article']],
+                    ['label' => 'Dashboard', 'icon' => 'th-large', 'url' => ['#']],
                     [
-                        'label' => 'Master',
-                        'icon' => 'th',
+                        'label' => 'Website',
+                        'icon' => 'desktop',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'MSO Class', 'icon' => 'th-list', 'url' => ['/class']],
-                            ['label' => 'Category Article', 'icon' => 'th-list', 'url' => ['/article_category']],
+                            ['label' => 'Content Header', 'icon' => 'circle-o', 'url' => ['#']],
+                            ['label' => 'Content', 'icon' => 'circle-o', 'url' => ['#']],
                         ]
-                        ],
-                        ['label' => 'Settings', 'icon' => 'gear', 'url' => ['/setting']],
+                    ],
+                    ['label' => 'Members', 'icon' => 'users', 'url' => ['/user']],
+                    [
+                        'label' => 'Article & Blog',
+                        'icon' => 'tasks',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'Blog Category', 'icon' => 'circle-o', 'url' => ['/blog/blog-category']],
+                            ['label' => 'Blog Post', 'icon' => 'circle-o', 'url' => ['/blog/blog-post']],
+                        ]
+                    ],
+                    [
+                        'label' => 'Master',
+                        'icon' => 'tasks',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'MSO Class', 'icon' => 'circle-o', 'url' => ['/mso-class']],
+                            ['label' => 'Category Article', 'icon' => 'circle-o', 'url' => ['/category-article']],
+                        ]
+                    ],
+                    ['label' => 'Settings', 'icon' => 'gear', 'url' => ['/setting']],
+
+                    ['label' => 'Modules', 'options' => ['class' => 'header']],
+                    ['label' => 'Exam', 'icon' => 'list-alt', 'url' => ['/exam']],
 
                 ],
             ]

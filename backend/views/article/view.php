@@ -36,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'body:ntext',
             'status',
             'image',
+            'category_article_id',
         ],
     ]) ?>
     </div>

@@ -1,0 +1,124 @@
+body, html {
+  color: #585858;
+  font-size: 14px;
+  font-family: 'PT Sans', sans-serif; }
+
+.border-bottom {
+  border-bottom: 1px solid #f0f0f0 !important; 
+}
+
+  .container{
+    max-width: 1180px;
+ }
+
+ .btn {
+  font-size: 16px;
+  padding: 6px;
+  padding-left: 20px;
+  padding-right: 20px; }
+
+.btn-primary {
+  background: #4285f4;
+  border-color: #4285f4; }
+
+.btn-primary:hover {
+  background: #5a95f5;
+  border-color: #5a95f5; }
+
+.btn-secondary {
+  background: #d3e2fc;
+  border-color: #d3e2fc;
+  color: #0b51c5; }
+
+.btn-secondary:hover {
+  background: #bad3fb;
+  border-color: #bad3fb;
+  color: #0b51c5; }
+
+.btn-success {
+  background: #38d39f;
+  border-color: #38d39f; }
+
+.btn-success:hover {
+  background: #4dd8a9;
+  border-color: #4dd8a9; }
+
+.btn-warning {
+  background: #ffc107;
+  border-color: #ffc107; }
+
+.btn-warning:hover {
+  background: #ffc721;
+  border-color: #ffc721; }
+
+.btn-danger {
+  background: #ff6347;
+  border-color: #ff6347; }
+
+.btn-danger:hover {
+  background: #ff7961;
+  border-color: #ff7961; }
+
+.btn-outline-primary {
+  border: solid 1px #4285f4;
+  border-radius: 30px;
+  color: #4285f4; }
+
+.btn-outline-primary:hover {
+  background: #4285f4;
+  border: solid 1px #4285f4; }
+
+.card {
+  border: 0;
+  border-radius: 10px; }
+  .card .card-header {
+    border-bottom: 0; }
+
+.card-outline {
+  border: solid 3px #f0f0f0;
+  border-radius: 10px; }
+  .card-outline .card-header {
+    background: transparent; }
+
+nav a {
+  padding-bottom: 2px !important;
+  color: #585858; }
+
+nav a:hover {
+  padding-bottom: 21px !important;
+  text-decoration: none;
+  border-bottom: 3px solid #4285f4;
+  color: #4285f4 !important; }
+
+.jumbotron-heading {
+  font-size: 70px;
+  font-weight: bold; }
+
+.jumbotron-heading-2 {
+  font-size: 50px;
+  font-weight: bold; }
+
+.bg-primary {
+  background: #4285f4;
+  color: white; }
+
+.list-group-item {
+  border: solid 1px #f0f0f0; }
+
+label {
+  font-size: 15px; }
+
+.boxed-icon {
+  font-size: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+  margin-bottom: 0px;
+  display: inline-block; }
+
+.card-title {
+  font-weight: normal;
+  font-size: 17px; }

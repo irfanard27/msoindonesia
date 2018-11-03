@@ -8,10 +8,20 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => 'Admin APP',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'exam' => [
+            'class' => 'backend\modules\exam\Module',
+        ],
+        'blog' => [
+            'class' => 'akiraz2\blog\Module',
+            'controllerNamespace' => 'akiraz2\blog\controllers\backend',
+            //'adminAccessControl' => 'common\components\AdminAccessControl', // null - by default 
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
@@ -53,6 +63,15 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+            ],
+        ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@akiraz2/yii2-blog/views/backend/default' => '@app/views/blog/default',
+                    '@akiraz2/yii2-blog/views/backend/blog-post' => '@app/views/blog/blog-post'
+                    
+                ],
             ],
         ],
         

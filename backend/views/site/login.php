@@ -11,25 +11,47 @@ $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
+    <div class="login-box">
+  <div class="login-logo">
+    <a href="#"><b>Admin</b>MSO</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in to start your session</p>
+        <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+            <div class="form-group has-feedback">
+                <?= $form->field($model, 'username')->textInput(['class'=>'form-control', 'autofocus' => true, 'placeholder'=>'username']) ?>
+            </div>
+            <div class="form-group has-feedback">
+                <?= $form->field($model, 'password')->passwordInput(['class'=>'form-control', 'autofocus' => true, 'placeholder'=>'username']) ?>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
 
+                <div class="col-xs-4">
+                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
+                </div>
+            </div>
             <?php ActiveForm::end(); ?>
-        </div>
-    </div>
+
+            <div class="social-auth-links text-center">
+            <p>- OR -</p>
+            <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+                Facebook</a>
+            <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+                Google+</a>
+            </div>
+    <!-- /.social-auth-links -->
+
+    <a href="#">I forgot my password</a><br>
+    <a href="register.html" class="text-center">Register a new membership</a>
+
+  </div>
+  <!-- /.login-box-body -->
+</div>
+<!-- /.login-box -->
+
+
 </div>
