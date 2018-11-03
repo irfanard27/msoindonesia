@@ -43,6 +43,7 @@
                         ]
                     ],
                     ['label' => 'Members', 'icon' => 'users', 'url' => ['/user']],
+                    ['label' => 'Product', 'icon' => 'asterisk', 'url' => ['/product']],
                     [
                         'label' => 'Article & Blog',
                         'icon' => 'tasks',
