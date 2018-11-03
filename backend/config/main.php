@@ -69,7 +69,8 @@ return [
             'theme' => [
                 'pathMap' => [
                     '@akiraz2/yii2-blog/views/backend/default' => '@app/views/blog/default',
-                    '@akiraz2/yii2-blog/views/backend/blog-post' => '@app/views/blog/blog-post'
+                    '@akiraz2/yii2-blog/views/backend/blog-post' => '@app/views/blog/blog-post',
+                    '@akiraz2/yii2-blog/views/backend/blog-category' => '@app/views/blog/blog-category'
                     
                 ],
             ],

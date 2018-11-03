@@ -16,6 +16,11 @@ $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Module::t('blog', 'Blog Posts'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <span class="box-title">Detail</span>
+    </div>
+    <div class="box-body">
 <div class="blog-post-view">
     
     <p>
@@ -60,4 +65,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+</div>
+</div>
 </div>

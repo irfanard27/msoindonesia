@@ -16,6 +16,11 @@ use yii\helpers\Html;
 $this->title = Module::t('blog', 'Blog Categorys');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <span class="box-title">Detail</span>
+    </div>
+    <div class="box-body">
 <div class="blog-category-index">
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -49,18 +54,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 <td><?= BlogCategory::getOneIsNavLabel($item['is_nav']); ?></td>
                 <td><?= $item['status']; ?></td>
                 <td>
-                    <a href="<?= \Yii::$app->getUrlManager()->createUrl(['blog/blog-category/create', 'parent_id' => $item['id']]); ?>" title="<?= Module::t('blog', 'Add Sub Catelog'); ?>"
-                       data-pjax="0"><span class="glyphicon glyphicon-plus-sign"></span></a>
-                    <a href="<?= \Yii::$app->getUrlManager()->createUrl(['blog/blog-category/view', 'id' => $item['id']]); ?>"" title="<?= Module::t('blog', 'View'); ?>" data-pjax="0"><span
-                        class="glyphicon glyphicon-eye-open"></span></a>
-                    <a href="<?= \Yii::$app->getUrlManager()->createUrl(['blog/blog-category/update', 'id' => $item['id']]); ?>"" title="<?= Module::t('blog', 'Update'); ?>" data-pjax="0"><span
-                        class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="<?= \Yii::$app->getUrlManager()->createUrl(['blog/blog-category/delete', 'id' => $item['id']]); ?>"" title="<?= Module::t('blog', 'Delete'); ?>"
-                    data-confirm="<?= Module::t('blog', 'Are you sure you want to delete this item?'); ?>" data-method="post" data-pjax="0"><span class="glyphicon glyphicon-trash"></span></a>
+                    <a href="<?= \Yii::$app->getUrlManager()->createUrl(['blog/blog-category/create', 'parent_id' => $item['id']]); ?>" title="<?= Module::t('blog', 'Add Sub Catelog'); ?>" class="btn btn-xs btn-primary"
+                       data-pjax="0"><span class="fa fa-plus"></span></a>
+                    <a href="<?= \Yii::$app->getUrlManager()->createUrl(['blog/blog-category/view', 'id' => $item['id']]); ?>"" title="<?= Module::t('blog', 'View'); ?>" data-pjax="0" class="btn btn-xs btn-primary"><span
+                        class="fa fa-eye"></span></a>
+                    <a href="<?= \Yii::$app->getUrlManager()->createUrl(['blog/blog-category/update', 'id' => $item['id']]); ?>"" title="<?= Module::t('blog', 'Update'); ?>" data-pjax="0" class="btn btn-xs btn-primary"><span
+                        class="fa fa-pencil"></span></a>
+                    <a href="<?= \Yii::$app->getUrlManager()->createUrl(['blog/blog-category/delete', 'id' => $item['id']]); ?>"" title="<?= Module::t('blog', 'Delete'); ?>" class="btn btn-xs btn-primary"
+                    data-confirm="<?= Module::t('blog', 'Are you sure you want to delete this item?'); ?>" data-method="post" data-pjax="0"><span class="fa fa-trash" ></span></a>
                 </td>
             </tr>
         <?php } ?>
         </tbody>
     </table>
 
+</div>
+</div>
 </div>

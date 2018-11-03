@@ -20,7 +20,11 @@ $parentCategory = ArrayHelper::merge([0 => Module::t('blog', 'Root Category')], 
 unset($parentCategory[$model->id]);
 
 ?>
-
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <span class="box-title">Detail</span>
+    </div>
+    <div class="box-body">
 <div class="blog-category-form">
 
     <?php $form = ActiveForm::begin([
@@ -58,4 +62,6 @@ unset($parentCategory[$model->id]);
 
     <?php ActiveForm::end(); ?>
 
+</div>
+</div>
 </div>
