@@ -35,9 +35,11 @@ abstract class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['description'], 'string'],
+            [['description'], 'string',],
             [['price'], 'integer'],
-            [['product_name', 'images'], 'string', 'max' => 255]
+            [['product_name',], 'string', 'max' => 255],
+            [['description','price','product_name'],'required'],
+            [['images'],'file', 'skipOnEmpty'=>true, 'extensions' => 'png,jpg,jpeg']
         ];
     }
 
@@ -55,7 +57,15 @@ abstract class Product extends \yii\db\ActiveRecord
         ];
     }
 
-
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->images->saveAs('uploads/product/' . $this->images->baseName . '.' . $this->images->extension);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
 }

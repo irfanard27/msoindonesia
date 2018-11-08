@@ -68,6 +68,17 @@ return [
             'rules' => [
             ],
         ],
+        'urlManagerBackend' => [
+
+        	'class' => 'yii\web\urlManager',
+
+        	'baseUrl' => 'http://localhost/msoindonesia/backend/web/uploads/',
+
+        	'enablePrettyUrl' => true,
+
+        	'showScriptName' => false,
+
+    	],
     ],
     'params' => $params,
 ];

@@ -10,7 +10,10 @@ use Yii;
  * This is the base-model class for table "mso_class".
  *
  * @property integer $id
- * @property string $string
+ * @property string $nama
+ *
+ * @property \common\models\Materi[] $materis
+ * @property \common\models\User[] $users
  * @property string $aliasModel
  */
 abstract class MsoClass extends \yii\db\ActiveRecord
@@ -32,7 +35,7 @@ abstract class MsoClass extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['string'], 'string', 'max' => 100]
+            [['nama'], 'string', 'max' => 100]
         ];
     }
 
@@ -43,8 +46,24 @@ abstract class MsoClass extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'string' => 'String',
+            'nama' => 'Nama',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMateris()
+    {
+        return $this->hasMany(\common\models\Materi::className(), ['mso_class_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(\common\models\User::className(), ['mso_class_id' => 'id']);
     }
 
 

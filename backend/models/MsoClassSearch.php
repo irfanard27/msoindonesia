@@ -19,7 +19,7 @@ public function rules()
 {
 return [
 [['id'], 'integer'],
-            [['string'], 'safe'],
+            [['nama'], 'safe'],
 ];
 }
 
@@ -59,7 +59,7 @@ $query->andFilterWhere([
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'string', $this->string]);
+        $query->andFilterWhere(['like', 'nama', $this->nama]);
 
 return $dataProvider;
 }

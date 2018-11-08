@@ -11,6 +11,7 @@ use yii\web\HttpException;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
 use dmstr\bootstrap\Tabs;
+use yii\web\UploadedFile;
 
 /**
 * ProductController implements the CRUD actions for Product model.
@@ -70,19 +71,22 @@ return $this->render('view', [
 */
 public function actionCreate()
 {
-$model = new Product;
+    $model = new Product;
 
-try {
-if ($model->load($_POST) && $model->save()) {
-return $this->redirect(['view', 'id' => $model->id]);
-} elseif (!\Yii::$app->request->isPost) {
-$model->load($_GET);
-}
-} catch (\Exception $e) {
-$msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
-$model->addError('_exception', $msg);
-}
-return $this->render('create', ['model' => $model]);
+    try {
+        $model->load($_POST);
+        $model->images = UploadedFile::getInstance($model, 'images');
+        if (\Yii::$app->request->isPost && $model->save()) {
+            $model->upload();
+            return $this->redirect(['view', 'id' => $model->id]);
+        } elseif (!\Yii::$app->request->isPost) {
+            $model->load($_GET);
+        }
+    } catch (\Exception $e) {
+        $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
+        $model->addError('_exception', $msg);
+    }
+    return $this->render('create', ['model' => $model]);
 }
 
 /**
@@ -93,15 +97,29 @@ return $this->render('create', ['model' => $model]);
 */
 public function actionUpdate($id)
 {
-$model = $this->findModel($id);
-
-if ($model->load($_POST) && $model->save()) {
-return $this->redirect(Url::previous());
-} else {
-return $this->render('update', [
-'model' => $model,
-]);
-}
+    $model = $this->findModel($id);
+    $oldimg = $model->images;
+    try {
+        $model->load($_POST);
+        $model->images = UploadedFile::getInstance($model, 'images');
+        
+        if (\Yii::$app->request->isPost) {
+            if($model->images != ""){
+                $model->save();
+                $model->upload();
+            } else {
+                $model->images = $oldimg;
+                $model->save();
+            }
+            return $this->redirect(['view', 'id' => $model->id]);
+        } elseif (!\Yii::$app->request->isPost) {
+            $model->load($_GET);
+        }
+    } catch (\Exception $e) {
+        $msg = (isset($e->errorInfo[2]))?$e->errorInfo[2]:$e->getMessage();
+        $model->addError('_exception', $msg);
+    }
+    return $this->render('update', ['model' => $model]);
 }
 
 /**

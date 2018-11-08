@@ -40,7 +40,7 @@ if (Yii::$app->get('opengraph', false)) {
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
-                    <h1 class="title title--1"><?= Module::t('blog', 'Blog'); ?></h1>  bnbmnbmn
+                    <h1 class="title title--1"><?= Module::t('blog', 'Blog'); ?></h1> 
                 </div>
                 <div class="col-md-5">
                     <div class="blog-index__search">

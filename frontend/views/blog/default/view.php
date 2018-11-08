@@ -41,7 +41,7 @@ $post_user = $post->user;
 $username_attribute = Module::getInstance()->userName;
 ?>
 <div class="container">
-    <article class="blog-post" itemscope itemtype="http://schema.org/Article">
+    <article class="pt-5" itemscope itemtype="http://schema.org/Article">
         <meta itemprop="author" content="<?= $post_user->{$username_attribute}; ?>">
         <meta itemprop="dateModified" content="<?= date_format(date_timestamp_set(new DateTime(), $post->updated_at), 'c') ?>"/>
         <meta itemscope itemprop="mainEntityOfPage" itemType="https://schema.org/WebPage" itemid="<?= $post->getAbsoluteUrl(); ?>"/>
@@ -51,12 +51,23 @@ $username_attribute = Module::getInstance()->userName;
         <meta itemprop="inLanguage" content="<?= Yii::$app->language; ?>">
         <meta itemprop="discussionUrl" content="<?= $post->getAbsoluteUrl(); ?>">
         
-        <div class="blog-post__nav">
-            <p class="blog-post__category">
+        <?php if ($post->banner) : ?>
+        <img src="<?= $post->getImageFileUrl('banner'); ?>" width="1150" height="auto" class="img-responsive rounded" />
+            <div itemscope itemprop="image" itemtype="http://schema.org/ImageObject" class="blog-post__img">
+                <meta itemprop="url" content="<?= $post->getThumbFileUrl('banner', 'thumb'); ?>">
+                <meta itemprop="width" content="400">
+                <meta itemprop="height" content="300">
+            </div>
+        <?php endif; ?>
+        <h1 class="blog-post__title title title--1" itemprop="headline">
+            <?= Html::encode($post->title); ?>
+        </h1>
+        <div class="">
+            <p class="blog-post__category float-left">
                 <?= Module::t('blog', 'Category'); ?>
                 : <?= Html::a($post->category->title, ['default/index', 'category_id' => $post->category->id, 'slug' => $post->category->slug], []); ?>
             </p>
-            <p class="blog-post__info">
+            <p class="blog-post__info float-right">
                 <time title="<?= Module::t('blog', 'Create Time'); ?>" itemprop="datePublished"
                       datetime="<?= date_format(date_timestamp_set(new DateTime(), $post->created_at), 'c') ?>">
                     <i class="fa fa-calendar-alt"></i> <?= Yii::$app->formatter->asDate($post->created_at); ?>
@@ -70,20 +81,8 @@ $username_attribute = Module::getInstance()->userName;
                     </span>
                 <?php endif; ?>
             </p>
-        </div>
-        <?php if ($post->banner) : ?>
-            <div itemscope itemprop="image" itemtype="http://schema.org/ImageObject" class="blog-post__img">
-                <img itemprop="url contentUrl" src="<?= $post->getThumbFileUrl('banner', 'thumb'); ?>" alt="<?= $post->title; ?>" class="img-responsive">
-                <meta itemprop="url" content="<?= $post->getThumbFileUrl('banner', 'thumb'); ?>">
-                <meta itemprop="width" content="400">
-                <meta itemprop="height" content="300">
-            </div>
-        <?php endif; ?>
-        <h1 class="blog-post__title title title--1" itemprop="headline">
-            <?= Html::encode($post->title); ?>
-        </h1>
-
-        <div class="blog-post__content" itemprop="articleBody">
+        </div><br clear="all">
+        <div class=" lead" itemprop="articleBody">
             <?php
             echo \yii\helpers\HtmlPurifier::process($post->content);
             ?>
