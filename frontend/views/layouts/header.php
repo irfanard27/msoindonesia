@@ -10,7 +10,7 @@ use common\models\MsoClass;
         <nav class="my-0 my-md-0 mr-md-5 mr-md-2">
             <a class="p-3" href="<?=Url::to('site') ?>">Home</a>
             <a class="p-3" href="<?=Url::to('product') ?>">Produk</a>
-            <a class="p-3" href="#">Berita</a>
+            <a class="p-3" href="<?=Url::to('berita') ?>">Berita</a>
             <a class="p-3" href="#">Penghargaan</a>
         </nav>
         <div class="mr-md-2">

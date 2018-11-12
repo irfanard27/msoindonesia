@@ -83,8 +83,25 @@ $this->title = 'My Yii Application';
           <div class="col-md-5 order-md-1">
             <img class="featurette-image img-fluid mx-auto" src="img/undraw_maker_launch_crhe.svg" width="500px" heght="auto"  alt="Generic placeholder image">
           </div>
-		</div><br ><br >
+		</div>
 </div>
 	
 
+</div>
+
+
+<div class="container pt-3 pb-3"><h1 class="jumbotron-heading text-center">Berita Terbaru</h1>
+<div class="card-deck">
+
+	<?php foreach($beritas as $berita) { ?>
+  <div class="card">
+    <img class="card-img-top" src="<?= $berita->getImageFileUrl('banner'); ?>" alt="Card image cap">
+    <div class="card-body bg-light">
+      <h5 class="card-title"><?= $berita->title ?></h5>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+  </div>
+	<?php } ?>
+</div>
 </div>

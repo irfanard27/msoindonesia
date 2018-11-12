@@ -12,7 +12,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
+use akiraz2\blog\models\BlogPost;
+use akiraz2\blog\models\BlogCategory;
 /**
  * Site controller
  */
@@ -72,7 +73,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $berita = BlogPost::find()->orderBy('id', "DESC")->limit(4)->all();
+        return $this->render('index',[ 'beritas' => $berita ]);
     }
 
     /**
