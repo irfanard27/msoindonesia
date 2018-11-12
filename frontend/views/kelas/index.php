@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\ActiveForm;
 use common\models\Kelas;
+use common\models\MsoClass;
 
 $this->title = 'Kelas Belajar';
 $this->params['breadcrumbs'][] = $this->title;
@@ -16,18 +17,38 @@ $user_id = Yii::$app->user->id;
 $user_mso_class = Yii::$app->user->identity->mso_class_id;
 $kelas = Kelas::find()->where(["member_id"=>$user_id, "mso_class_id"=> $user_mso_class])->one();
 ?>
+<div class="jumbotron bg-primary">
+    <div class="container">
+        <h1 class="display-4">Kelas Belajar</h1>
+        <p class="lead">Download Materi yang sudah disediakan, Anda akan dapat mendownload materi tiap hari<br/>
+        Usahakan Anda membaca materi setiap hari
+
+        </p>
+        
+    </div>
+</div>
 <div class="container mt-5">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p class="lead text-muted">Download Materi yang sudah disediakan, Anda akan dapat mendownload materi tiap hari
-
-    </p>
     <?php
         $is_in_kelass = Kelas::find()->where(["member_id"=>$user_id, "mso_class_id"=>$user_mso_class])->count();
         if($is_in_kelass == 0){
     ?> 
             <a href="kelas/start-class" class="btn btn-primary">Mulai Kelas Baru</a>
     <?php } else { ?>
+
+    <div class="media mb-3">
+    <img src="<?=\Yii::getAlias("@web");?>/img/usr_icon.png" alt="user-image" width="70px" height="auto" class="rounded mr-3">
+    <div class="media-body">
+        <h5 class="mt-0"><?=\Yii::$app->user->identity->username?> | <?= MsoClass::findOne(\Yii::$app->user->identity->mso_class_id)->nama ?></h5>
+        <span class="text-muted"><?=\Yii::$app->user->identity->email ?></span><br />
+        
+
+        <div class="progress">
+        <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+        </div>
+    </div>
+    </div>
+    <hr >
+    
 
     <div class="list-group">
         <?php foreach($materis as $materi) { 
