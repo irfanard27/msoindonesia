@@ -44,7 +44,7 @@ class SiteController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    //'logout' => ['post'],
                 ],
             ],
         ];
@@ -153,7 +153,9 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        $this->layout = 'main_auth.php';
         $model = new SignupForm();
+        $model->mso_class_id = 1;
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
