@@ -155,14 +155,17 @@ class SiteController extends Controller
     {
         $this->layout = 'main_auth.php';
         $model = new SignupForm();
-        $model->mso_class_id = 1;
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
+        
+        if(Yii::$app->request->post()){
+            $model->mso_class_id = 1;
+            if ($model->load(Yii::$app->request->post())) {
+                if ($user = $model->signup()) {
+                    if (Yii::$app->getUser()->login($user)) {
+                        return $this->goHome();
+                    }
                 }
             }
-        }
+        }  
 
         return $this->render('signup', [
             'model' => $model,
