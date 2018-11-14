@@ -157,8 +157,9 @@ class SiteController extends Controller
         $model = new SignupForm();
         
         if(Yii::$app->request->post()){
-            $model->mso_class_id = 1;
+            
             if ($model->load(Yii::$app->request->post())) {
+                $model->mso_class_id = 1;
                 if ($user = $model->signup()) {
                     if (Yii::$app->getUser()->login($user)) {
                         return $this->goHome();
